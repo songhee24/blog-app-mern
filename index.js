@@ -94,7 +94,7 @@ app.post("/auth/login", registerValidation, async (req, res) => {
   }
 });
 
-app.get("auth/me", checkAuth, async (req, res) => {
+app.get("/auth/me", checkAuth, async (req, res) => {
   try {
   } catch (e) {}
 });
