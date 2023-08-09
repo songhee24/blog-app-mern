@@ -96,6 +96,20 @@ app.post("/auth/login", registerValidation, async (req, res) => {
 
 app.get("/auth/me", checkAuth, async (req, res) => {
   try {
+    const user = await UserScheme.findById(req.userId);
+    if (!user) {
+      return res.status(404).json({
+        message: "Пользователь не найден",
+      });
+    }
+    const token = jwt.sign(
+      {
+        _id: user._id,
+      },
+      "secret123",
+      { expiresIn: "30d" }
+    );
+    return res.json({ ...user._doc, token });
   } catch (e) {}
 });
 
