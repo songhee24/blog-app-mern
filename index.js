@@ -5,6 +5,7 @@ import { registerValidation } from "./validations/auth.js";
 import { validationResult } from "express-validator";
 import UserScheme from "./models/User.js";
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 
 mongoose
   .connect(
@@ -39,8 +40,14 @@ app.post("/auth/register", registerValidation, async (req, res) => {
     });
 
     const user = await doc.save();
-
-    return res.json(user);
+    const token = jwt.sign(
+      {
+        _id: user._id,
+      },
+      "secret123",
+      { expiresIn: "30d" }
+    );
+    return res.json({ ...user, token });
   } catch (e) {
     console.log(e);
     return res.status(500).json({
