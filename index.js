@@ -7,6 +7,8 @@ import UserScheme from "./models/User.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
+import checkAuth from "./utils/checkAuth.js";
+
 mongoose
   .connect(
     "mongodb+srv://azamat:123@cluster0.fxlagp4.mongodb.net/blog?retryWrites=true&w=majority"
@@ -92,7 +94,7 @@ app.post("/auth/login", registerValidation, async (req, res) => {
   }
 });
 
-app.get("auth/me", async (req, res) => {
+app.get("auth/me", checkAuth, async (req, res) => {
   try {
   } catch (e) {}
 });
