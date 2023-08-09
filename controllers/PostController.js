@@ -46,6 +46,16 @@ export const getOne = async (req, res) => {
     res.status(500).json({ message: "Не удалось получить статьи" });
   }
 };
+export const remove = async (req, res) => {
+  try {
+    const postId = req.params.id;
+    await PostScheme.findOneAndDelete({ _id: postId });
+    res.json({ success: true });
+  } catch (e) {
+    console.log(e);
+    res.status(500).json({ message: "Не удалось удалить статью" });
+  }
+};
 
 export const create = async (req, res) => {
   try {
