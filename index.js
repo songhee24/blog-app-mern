@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 
 import { registerValidation } from "./validations/auth.js";
 import { validationResult } from "express-validator";
+import UserScheme from "./models/User.js";
 
 mongoose
   .connect(
@@ -23,6 +24,13 @@ app.post("/auth/register", registerValidation, (req, res) => {
   if (!errors.isEmpty()) {
     return res.status(400).json(errors.array());
   }
+
+  const doc = new UserScheme({
+    email: req.body.email,
+    fullName: req.body.fullName,
+    avatarUrl: req.body.avatarUrl,
+    passwordHash: req.body.password,
+  });
 
   return res.json({ success: true });
 });
