@@ -1,10 +1,7 @@
 import express from "express";
 import mongoose from "mongoose";
 
-import {
-  loginValidation,
-  registerValidation,
-} from "./validations/validations.js";
+import { loginValidation, registerValidation } from "./validations.js";
 
 import checkAuth from "./utils/checkAuth.js";
 import * as UserController from "./controllers/UserController.js";
