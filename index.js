@@ -8,7 +8,7 @@ import bcrypt from "bcrypt";
 
 mongoose
   .connect(
-    "mongodb+srv://azamat:123@cluster0.fxlagp4.mongodb.net/?retryWrites=true&w=majority"
+    "mongodb+srv://azamat:123@cluster0.fxlagp4.mongodb.net/blog?retryWrites=true&w=majority"
   )
   .then(() => {
     console.log("mongodb successfully connected");
