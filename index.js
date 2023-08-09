@@ -71,7 +71,7 @@ app.post("/auth/login", registerValidation, async (req, res) => {
     );
 
     if (!isValidPass) {
-      return res.status(404).json({
+      return res.status(403).json({
         message: "Невереный логин или пароль",
       });
     }
@@ -90,6 +90,11 @@ app.post("/auth/login", registerValidation, async (req, res) => {
       message: "Не удалось авторизоваться",
     });
   }
+});
+
+app.get("auth/me", async (req, res) => {
+  try {
+  } catch (e) {}
 });
 
 app.listen(4444, (err) => {
