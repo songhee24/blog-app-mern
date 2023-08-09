@@ -47,7 +47,7 @@ app.post("/auth/register", registerValidation, async (req, res) => {
       "secret123",
       { expiresIn: "30d" }
     );
-    return res.json({ ...user, token });
+    return res.json({ ...user._doc, token });
   } catch (e) {
     console.log(e);
     return res.status(500).json({
