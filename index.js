@@ -102,15 +102,14 @@ app.get("/auth/me", checkAuth, async (req, res) => {
         message: "Пользователь не найден",
       });
     }
-    const token = jwt.sign(
-      {
-        _id: user._id,
-      },
-      "secret123",
-      { expiresIn: "30d" }
-    );
-    return res.json({ ...user._doc, token });
-  } catch (e) {}
+
+    return res.json({ ...user._doc });
+  } catch (e) {
+    console.log(e);
+    return res.status(500).json({
+      message: "Отказано в доступе!",
+    });
+  }
 });
 
 app.listen(4444, (err) => {
