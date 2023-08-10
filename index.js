@@ -1,5 +1,6 @@
 import express from "express";
 import mongoose from "mongoose";
+import multer from "multer";
 
 import {
   loginValidation,
@@ -8,10 +9,10 @@ import {
 } from "./validations.js";
 
 import checkAuth from "./utils/checkAuth.js";
-import * as UserController from "./controllers/UserController.js";
-import * as PostController from "./controllers/PostController.js";
-import multer from "multer";
+
 import handleValidationErrors from "./utils/handleValidationErrors.js";
+import { UserController, PostController } from "./controllers/index.js";
+
 mongoose
   .connect(
     "mongodb+srv://azamat:123@cluster0.fxlagp4.mongodb.net/blog?retryWrites=true&w=majority"
