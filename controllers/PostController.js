@@ -9,7 +9,6 @@ export const getAll = async (req, res) => {
     res.status(500).json({ message: "Не удалось получить статьи" });
   }
 };
-
 export const getOne = async (req, res) => {
   try {
     const postId = req.params.id;
@@ -56,7 +55,6 @@ export const remove = async (req, res) => {
     res.status(500).json({ message: "Не удалось удалить статью" });
   }
 };
-
 export const create = async (req, res) => {
   try {
     const doc = new PostScheme({
