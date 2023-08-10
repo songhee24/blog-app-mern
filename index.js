@@ -8,10 +8,8 @@ import {
   registerValidation,
 } from "./validations.js";
 
-import checkAuth from "./utils/checkAuth.js";
-
-import handleValidationErrors from "./utils/handleValidationErrors.js";
 import { UserController, PostController } from "./controllers/index.js";
+import { checkAuth, handleValidationErrors } from "./utils/index.js";
 
 mongoose
   .connect(
