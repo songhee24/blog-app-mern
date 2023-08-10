@@ -72,3 +72,24 @@ export const create = async (req, res) => {
     res.status(500).json({ message: "Не удалось создать статью" });
   }
 };
+
+export const update = async (req, res) => {
+  try {
+    const postId = req.params.id;
+    await PostScheme.updateOne(
+      {
+        _id: postId,
+      },
+      {
+        title: req.body.title,
+        text: req.body.text,
+        imageUrl: req.body.imageUrl,
+        tags: req.body.tags,
+      }
+    );
+    res.json({ success: true });
+  } catch (e) {
+    console.log(e);
+    res.status(500).json({ message: "Не удалось обновить статью" });
+  }
+};
