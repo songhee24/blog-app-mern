@@ -1,5 +1,20 @@
 import PostScheme from "../models/Post.js";
 
+export const getLastTags = async (req, res) => {
+  try {
+    const posts = await PostScheme.find().limit(5).exec();
+
+    const tags = posts
+      .map((obj) => obj.tags)
+      .flat()
+      .slice(0, 5);
+
+    res.json(tags);
+  } catch (e) {
+    console.log(e);
+    res.status(500).json({ message: "Не удалось получить статьи" });
+  }
+};
 export const getAll = async (req, res) => {
   try {
     const posts = await PostScheme.find().populate("user").exec();
