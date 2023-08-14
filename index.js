@@ -10,6 +10,7 @@ import {
 
 import { UserController, PostController } from "./controllers/index.js";
 import { checkAuth, handleValidationErrors } from "./utils/index.js";
+import cors from "cors";
 
 mongoose
   .connect(
@@ -23,6 +24,7 @@ mongoose
   });
 
 const app = express();
+app.use(cors());
 app.use(express.json());
 
 const storage = multer.diskStorage({
