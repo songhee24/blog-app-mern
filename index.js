@@ -34,8 +34,8 @@ const app = express();
 app.use(credentials);
 
 app.use(cors(corsOptions));
-app.use(cookieParser());
 app.use(express.json());
+app.use(cookieParser());
 
 const storage = multer.diskStorage({
   destination: (_, __, cb) => {

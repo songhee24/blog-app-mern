@@ -69,13 +69,11 @@ export const login = async (req, res) => {
     );
     // return res.json({ ...user._doc, token });
     res
-      .cookie("token", token, {
+      .cookie("jwt", token, {
         httpOnly: true,
-        maxAge: 1000 * 60 * 60 * 24 * 14, // 14 Day Age,
-        domain: "127.0.0.1",
-        sameSite: "lax",
-        path: "/",
-        // secure: true,
+        secure: true,
+        sameSite: "None",
+        maxAge: 24 * 60 * 60 * 1000,
       })
       .send({ authenticated: true, message: "Authentication Successful." });
   } catch (e) {
