@@ -16,6 +16,8 @@ import {
 } from "./utils/index.js";
 import cors from "cors";
 import cookieParser from "cookie-parser";
+import { credentials } from "./utils/credentials.js";
+import { corsOptions } from "./config/corsOptions.js";
 
 mongoose
   .connect(
@@ -28,12 +30,9 @@ mongoose
     console.log("mongodb got an error");
   });
 
-const corsOptions = {
-  origin: "http://127.0.0.1:5173",
-  credentials: true,
-};
-
 const app = express();
+app.use(credentials);
+
 app.use(cors(corsOptions));
 app.use(cookieParser());
 app.use(express.json());
