@@ -1,10 +1,10 @@
 export default (req, res, next) => {
-  // const { token } = req.cookies?.token || {};
+  const { jwt } = req.cookies || {};
   console.log("token:", req.headers.cookie);
-  // if (token) {
-  //   const _token = token.replace(/Bearer\s?/, "");
-  //   console.log("_token:", _token);
-  // }
+  if (jwt) {
+    const token = jwt.replace(/Bearer\s?/, "");
+    console.log("_token:", token);
+  }
 
   next();
 };

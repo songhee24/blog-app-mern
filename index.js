@@ -63,8 +63,8 @@ app.post(
   UserController.login
 );
 app.post("/auth/logout", UserController.logout);
-// app.get("/auth/me", checkAuthFromCookies, checkAuth, UserController.getMe);
-app.get("/auth/me", UserController.getMe);
+app.get("/auth/me", checkAuthFromCookies, checkAuth, UserController.getMe);
+// app.get("/auth/me", UserController.getMe);
 
 app.post("/upload", checkAuth, upload.single("image"), (req, res) => {
   res.json({
