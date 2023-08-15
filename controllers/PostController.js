@@ -49,7 +49,7 @@ export const getOne = async (req, res) => {
       })
       .catch((err) => {
         if (err) {
-          console.log(e);
+          console.log(err);
           return res
             .status(500)
             .json({ message: "Не удалось получить статью" });
