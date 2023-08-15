@@ -100,7 +100,6 @@ export const logout = async (req, res) => {
 
 export const getMe = async (req, res) => {
   try {
-    console.log("token:", req.cookies);
     const user = await UserScheme.findById(req.userId);
     if (!user) {
       return res.status(404).json({
