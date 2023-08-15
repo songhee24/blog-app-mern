@@ -72,9 +72,10 @@ export const login = async (req, res) => {
       .cookie("token", token, {
         httpOnly: true,
         maxAge: 1000 * 60 * 60 * 24 * 14, // 14 Day Age,
-        domain: "localhost",
-        sameSite: "none",
-        secure: true,
+        domain: "127.0.0.1",
+        sameSite: "lax",
+        path: "/",
+        // secure: true,
       })
       .send({ authenticated: true, message: "Authentication Successful." });
   } catch (e) {
@@ -101,6 +102,7 @@ export const logout = async (req, res) => {
 
 export const getMe = async (req, res) => {
   try {
+    console.log("token:", req.cookies);
     const user = await UserScheme.findById(req.userId);
     if (!user) {
       return res.status(404).json({

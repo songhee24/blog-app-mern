@@ -27,7 +27,8 @@ mongoose
   .catch(() => {
     console.log("mongodb got an error");
   });
-let corsOptions = {
+
+const corsOptions = {
   origin: "http://127.0.0.1:5173",
   credentials: true,
 };
@@ -63,7 +64,8 @@ app.post(
   UserController.login
 );
 app.post("/auth/logout", UserController.logout);
-app.get("/auth/me", checkAuthFromCookies, checkAuth, UserController.getMe);
+// app.get("/auth/me", checkAuthFromCookies, checkAuth, UserController.getMe);
+app.get("/auth/me", UserController.getMe);
 
 app.post("/upload", checkAuth, upload.single("image"), (req, res) => {
   res.json({
