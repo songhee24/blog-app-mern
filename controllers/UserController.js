@@ -101,6 +101,7 @@ export const logout = async (req, res) => {
 export const getMe = async (req, res) => {
   try {
     const user = await UserScheme.findById(req.userId);
+    console.log("user:", user._doc);
     if (!user) {
       return res.status(404).json({
         message: "Пользователь не найден",
