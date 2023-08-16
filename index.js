@@ -11,6 +11,7 @@ import {
 import { UserController, PostController } from "./controllers/index.js";
 import { checkAuth, handleValidationErrors } from "./utils/index.js";
 import cors from "cors";
+import cookieParser from "cookie-parser";
 
 mongoose
   .connect(
@@ -22,9 +23,14 @@ mongoose
   .catch(() => {
     console.log("mongodb got an error");
   });
+let corsOptions = {
+  origin: "http://127.0.0.1:5173",
+  credentials: true,
+};
 
 const app = express();
-app.use(cors());
+app.use(cors(corsOptions));
+app.use(cookieParser());
 app.use(express.json());
 
 const storage = multer.diskStorage({
