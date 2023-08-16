@@ -71,6 +71,7 @@ app.post(
   checkAuthFromCookies,
   upload.single("image"),
   (req, res) => {
+    console.log("file:", req.file);
     res.json({
       url: `uploads/${req.file.originalname}`,
     });
