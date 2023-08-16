@@ -66,23 +66,28 @@ app.post("/auth/logout", UserController.logout);
 app.get("/auth/me", checkAuthFromCookies, UserController.getMe);
 // app.get("/auth/me", UserController.getMe);
 
-app.post("/upload", checkAuth, upload.single("image"), (req, res) => {
-  res.json({
-    url: `uploads/${req.file.originalname}`,
-  });
-});
+app.post(
+  "/upload",
+  checkAuthFromCookies,
+  upload.single("image"),
+  (req, res) => {
+    res.json({
+      url: `uploads/${req.file.originalname}`,
+    });
+  }
+);
 
 app.get("/posts", PostController.getAll);
 app.get("/posts/tags", PostController.getLastTags);
 app.get("/posts/:id", PostController.getOne);
 app.post(
   "/posts",
-  checkAuth,
+  checkAuthFromCookies,
   postCreateValidation,
   handleValidationErrors,
   PostController.create
 );
-app.delete("/posts/:id", checkAuth, PostController.remove);
+app.delete("/posts/:id", checkAuthFromCookies, PostController.remove);
 app.patch(
   "/posts/:id",
   postCreateValidation,
