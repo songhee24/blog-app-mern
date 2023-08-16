@@ -67,7 +67,16 @@ export const login = async (req, res) => {
       "secret123",
       { expiresIn: "30d" }
     );
-    return res.json({ ...user._doc, token });
+    // return res.json({ ...user._doc, token });
+    res
+      .cookie("token", token, {
+        httpOnly: true,
+        maxAge: 1000 * 60 * 60 * 24 * 14, // 14 Day Age,
+        domain: "localhost",
+        sameSite: "none",
+        secure: true,
+      })
+      .send({ authenticated: true, message: "Authentication Successful." });
   } catch (e) {
     console.log(e);
     return res.status(500).json({
