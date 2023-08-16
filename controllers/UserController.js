@@ -29,7 +29,8 @@ export const register = async (req, res) => {
         httpOnly: true,
         maxAge: 1000 * 60 * 60 * 24 * 14, // 14 Day Age,
         domain: "localhost",
-        sameSite: "Lax",
+        sameSite: "none",
+        secure: true,
       })
       .send({ authenticated: true, message: "Authentication Successful." });
   } catch (e) {
