@@ -9,7 +9,11 @@ import {
 } from "./validations.js";
 
 import { UserController, PostController } from "./controllers/index.js";
-import { checkAuth, handleValidationErrors } from "./utils/index.js";
+import {
+  checkAuth,
+  checkAuthFromCookies,
+  handleValidationErrors,
+} from "./utils/index.js";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 
@@ -59,7 +63,7 @@ app.post(
   UserController.login
 );
 app.post("/auth/logout", UserController.logout);
-app.get("/auth/me", checkAuth, UserController.getMe);
+app.get("/auth/me", checkAuthFromCookies, checkAuth, UserController.getMe);
 
 app.post("/upload", checkAuth, upload.single("image"), (req, res) => {
   res.json({
