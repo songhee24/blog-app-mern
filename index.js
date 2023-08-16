@@ -58,6 +58,7 @@ app.post(
   handleValidationErrors,
   UserController.login
 );
+app.post("/auth/logout", UserController.logout);
 app.get("/auth/me", checkAuth, UserController.getMe);
 
 app.post("/upload", checkAuth, upload.single("image"), (req, res) => {
