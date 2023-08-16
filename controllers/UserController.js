@@ -82,6 +82,20 @@ export const login = async (req, res) => {
   }
 };
 
+export const logout = async (req, res) => {
+  res
+    .cookie("token", null, {
+      httpOnly: true,
+      maxAge: 1000 * 60 * 60 * 24 * 14, // 14 Day Age,
+      domain: "localhost",
+      sameSite: "Lax",
+    })
+    .send({
+      authenticated: false,
+      message: "Logout Successful.",
+    });
+};
+
 export const getMe = async (req, res) => {
   try {
     const user = await UserScheme.findById(req.userId);
